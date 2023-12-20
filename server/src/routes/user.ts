@@ -1,8 +1,15 @@
-import {Router,Request,Response} from 'express';
+import {Router,Request,Response, NextFunction} from 'express';
 import {Iuser, UserModel} from "../models/user";
 import { UserErrors } from '../errors';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import path from "path"; 
+import dotenv from "dotenv";
+
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+
+const accessToken =  process.env.ACCESS_TOKEN_SECRET;
+
 
 const router = Router();
 
@@ -44,7 +51,7 @@ router.post('/login',async (req: Request, res: Response) => {
             return res.status(400).json({type: UserErrors.WRONG_CREDENTIALS});
         }
 
-        const token = jwt.sign({id: user._id}, "secret");
+        const token = jwt.sign({id: user._id}, accessToken);
         res.json({token , userID: user._id});
 
 
@@ -52,6 +59,18 @@ router.post('/login',async (req: Request, res: Response) => {
         res.status(500).json({ type:err });
     }
 });
+
+export const verifyToken = (req: Request, res: Response , next: NextFunction) => {
+    const authHeader = req.headers.authorization
+    if (authHeader) {
+        jwt.verify(authHeader,accessToken, (err)=> {
+            if (err) {return res.sendStatus(403)}
+            next();
+        });
+    }
+    res.sendStatus(401);
+};
+
 
 
 export {router as userRouter};
