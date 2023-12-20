@@ -1,0 +1,44 @@
+[
+    {
+        "productName": "Television",
+        "price": 799,
+        "description": "4K Ultra HD Smart LED TV with HDR.",
+        "imageURL": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "stockQuantity": 30
+    },
+    {
+        "productName": "Coffee Maker",
+        "price": 49,
+        "description": "Automatic drip coffee maker with a timer.",
+        "imageURL": "https://cdn.pixabay.com/photo/2023/02/17/11/19/ai-generated-7795817_1280.jpg",
+        "stockQuantity": 60
+    },
+    {
+        "productName": "Running Shoes",
+        "price": 89,
+        "description": "Men's running shoes with breathable mesh.",
+        "imageURL": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D",
+        "stockQuantity": 45
+    },
+    {
+        "productName": "Laptop",
+        "price": 999,
+        "description": "High-performance laptop with advanced features.",
+        "imageURL": "https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bGFwdG9wfGVufDB8fDB8fHww",
+        "stockQuantity": 50
+    },
+    {
+        "productName": "Smartphone",
+        "price": 599,
+        "description": "Powerful smartphone with a stunning display.",
+        "imageURL": "https://cdn.pixabay.com/photo/2016/03/27/19/43/samsung-1283938_1280.jpg",
+        "stockQuantity": 100
+    },
+    {
+        "productName": "Headphones",
+        "price": 129,
+        "description": "Wireless headphones with noise-cancellation technology.",
+        "imageURL": "https://cdn.pixabay.com/photo/2016/11/29/09/08/headphones-1868612_1280.jpg",
+        "stockQuantity": 75
+    }
+]
