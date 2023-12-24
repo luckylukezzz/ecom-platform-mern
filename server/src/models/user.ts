@@ -5,14 +5,14 @@ export interface Iuser{
     username: string;
     password: string;
     availableMoney: number;
-   // purchasedItems:string[];
+    purchasedItems:string[];
 }
 
 const UserSchema = new Schema<Iuser>({
     username:{type: String , required: true , unique: true},
     password: {type: String , required: true },
     availableMoney: {type: Number , default: 5000},
-   // purchasedItems: {type: String , required: true
+    purchasedItems: [{type: Schema.Types.ObjectId , ref: "product", default:[]}],
 });
 
 export const UserModel = model<Iuser>("users",UserSchema);

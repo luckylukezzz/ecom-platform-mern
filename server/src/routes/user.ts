@@ -10,7 +10,6 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const accessToken =  process.env.ACCESS_TOKEN_SECRET;
 
-
 const router = Router();
 
 router.post("/register", async (req: Request, res: Response) => {
@@ -60,16 +59,23 @@ router.post('/login',async (req: Request, res: Response) => {
     }
 });
 
-export const verifyToken = (req: Request, res: Response , next: NextFunction) => {
-    const authHeader = req.headers.authorization
+export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+    const authHeader = req.headers.authorization;
+    console.log(authHeader);
     if (authHeader) {
-        jwt.verify(authHeader,accessToken, (err)=> {
-            if (err) {return res.sendStatus(403)}
-            next();
+        jwt.verify(authHeader, accessToken, (err) => {
+            if (err) {
+                console.log("why???");
+                return res.status(403).send('Forbidden');
+            }
+            console.log("hlo im ok");
+            next(); // Continue to the next middleware
         });
+    } else {
+        return res.status(401).send('Unauthorized');
     }
-    res.sendStatus(401);
 };
+
 
 
 
