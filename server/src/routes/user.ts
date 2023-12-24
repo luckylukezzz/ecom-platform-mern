@@ -61,7 +61,6 @@ router.post('/login',async (req: Request, res: Response) => {
 
 export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
-    console.log(authHeader);
     if (authHeader) {
         jwt.verify(authHeader, accessToken, (err) => {
             if (err) {
@@ -71,7 +70,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
             console.log("hlo im ok");
             next(); // Continue to the next middleware
         });
-    } else {
+    } else {  //need this else because i might try to send several responses
         return res.status(401).send('Unauthorized');
     }
 };

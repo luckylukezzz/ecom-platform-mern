@@ -80,7 +80,7 @@ const Login = () => {
         }catch(err){
             
             let errorMessage: string = "";
-            switch (err.response.data.type) {
+            switch (err?.response?.data?.type) {
                 case UserErrors.USERNAME_ALREADY_EXISTS:
                     errorMessage = "User already exists";
                     break;
