@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {SyntheticEvent, useState} from 'react';
-import { UserErrors } from '../../errors';
+import { UserErrors } from '../../models/errors';
 import {useCookies} from 'react-cookie';
 import {useNavigate} from "react-router-dom";
 
