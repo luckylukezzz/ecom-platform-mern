@@ -3,14 +3,19 @@ import { useGetProducts } from "../../hooks/useGetProducts";
 import { IProduct } from "../../models/interfaces";
 import { IShopContext, ShopContext } from "../../context/shop-context";
 import CartItem from "./cartItem";
-import "./styles.css"
+import { useNavigate } from "react-router-dom";
+import "./styles.css";
+
 
 
 const CheckoutPage = () => {
-    const {getCartItemCount , getTotalCartAmount} = useContext<IShopContext>(ShopContext);
+    const {getCartItemCount , getTotalCartAmount , checkout} = useContext<IShopContext>(ShopContext);
 
     const {products} = useGetProducts();
     const total = getTotalCartAmount();
+    const navigate = useNavigate();
+
+
     return ( 
     <div className = "cart">
        <div>
@@ -27,12 +32,15 @@ const CheckoutPage = () => {
         })}
        </div>
 
-       <div>
-        <p> Subtotal: ${total}</p>
-        <button className = "cart-submit-button"> Continue shopping</button>
-        <button className = "cart-submit-button"> Checkout </button>
-
-       </div>
+        {total > 0 ? (
+               <div className="checkout">
+               <p> Subtotal: ${total.toFixed(2)}</p>
+               <button className = "cart-submit-button" onClick={() => navigate("/")}> Continue shopping</button>
+               <button className = "cart-submit-button" onClick={checkout}> Checkout </button>
+       
+              </div>
+        ) : (<h1>Shopping cart is empty</h1>)}
+    
        
     </div> );
 }

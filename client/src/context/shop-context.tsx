@@ -1,6 +1,9 @@
 import {createContext, useState} from "react";
 import { IProduct } from "../models/interfaces";
 import { useGetProducts } from "../hooks/useGetProducts";
+import axios from "axios";
+import { useGetToken } from "../hooks/useGetToken";
+import { useNavigate } from "react-router-dom";
 
 export interface IShopContext {
     addToCart :( itemId: string) => void ;
@@ -8,6 +11,7 @@ export interface IShopContext {
     removeFromCart : (itemId: string) => void ;
     getCartItemCount : (itemId: string) => number;
     getTotalCartAmount : () => number;
+    checkout: () => void;
 }
 
 
@@ -17,6 +21,7 @@ const defaultVal: IShopContext = {
     removeFromCart : () => null,
     getCartItemCount : () => 0,
     getTotalCartAmount : () => 0,
+    checkout: () => null,
 }
 
 export const ShopContext = createContext<IShopContext>(defaultVal);
@@ -24,6 +29,13 @@ export const ShopContext = createContext<IShopContext>(defaultVal);
 export const ShopContextProvider = (props) => {
     const [cartItems , setCartItems]    = useState< {string : number} | {}> ({});
     const { products} = useGetProducts();
+    const { headers} = useGetToken();
+    const navigate = useNavigate();
+    const [availableMoney, setAvailableMoney] = useState<number>(0);
+
+    const fetchAvailableMoney  = async () => {
+
+    }
 
     const getCartItemCount = (itemId: string): number => {
         if (itemId in cartItems){
@@ -65,12 +77,24 @@ export const ShopContextProvider = (props) => {
         return total;
     };
 
+    const checkout = async () => {
+        const body = {customerID: localStorage.getItem("userID"), cartItems};
+        try{
+            await axios.post("http://localhost:3001/product/checkout", body,{headers,});
+            alert("purchase success")
+            navigate("/");
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     const contextValue: IShopContext = {
         addToCart,
         removeFromCart,
         updateCartItemCount,
         getCartItemCount,
-        getTotalCartAmount
+        getTotalCartAmount,
+        checkout
     };
 
     //can access those funcionalities bf useContext
