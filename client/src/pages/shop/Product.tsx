@@ -16,8 +16,9 @@ const  Product= ( props: Props) => {
         imageURL,
         stockQuantity} = props.product;
 
-    const { addToCart } = useContext<IShopContext>(ShopContext);
+    const { addToCart , getCartItemCount} = useContext<IShopContext>(ShopContext);
 
+    const count = getCartItemCount(_id);
     return ( 
     <div className = "product">
         <img src={imageURL}/>
@@ -27,7 +28,9 @@ const  Product= ( props: Props) => {
             <p>${price}</p>
 
         </div>
-        <button className = "addToCartBttn" onClick={()=> addToCart(_id)} >Add to Cart</button>
+        <button className = "addToCartBttn" onClick={()=> addToCart(_id)} >
+            Add to Cart {count > 0 && <> ({count})</>}
+        </button>
         <div className="stock-quantity">
             {stockQuantity === 0 && <h1> OUT OF STOCK</h1> }
 
