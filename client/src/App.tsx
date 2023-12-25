@@ -5,12 +5,14 @@ import CheckoutPage from "./pages/checkout";
 import AuthPage from "./pages/auth";
 import PurchasedItemPage from "./pages/purchased-items";
 import ShopPage from "./pages/shop";
+import { ShopContextProvider } from "./context/shop-context";
 
 
 function App() {
   return (
     <div className = "App">
      <Router>
+      <ShopContextProvider>
         <Navbar />
         <Routes>
           <Route path="/auth" element={<AuthPage/>}/>
@@ -18,7 +20,9 @@ function App() {
           <Route path="/purchased-items" element={<PurchasedItemPage/>}/>
           <Route path="/" element={<ShopPage/>} />
         </Routes>
-     </Router>
+     
+      </ShopContextProvider>
+      </Router>
     </div>
   );
 }
