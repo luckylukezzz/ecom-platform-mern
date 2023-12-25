@@ -7,10 +7,10 @@ import "./styles.css"
 
 
 const CheckoutPage = () => {
-    const {getCartItemCount} = useContext<IShopContext>(ShopContext);
+    const {getCartItemCount , getTotalCartAmount} = useContext<IShopContext>(ShopContext);
 
     const {products} = useGetProducts();
-
+    const total = getTotalCartAmount();
     return ( 
     <div className = "cart">
        <div>
@@ -22,16 +22,15 @@ const CheckoutPage = () => {
        <div className = "cart" >
         {products.map((product: IProduct)  =>{
             if (getCartItemCount(product._id) !== 0){
-                console.log(" yo im here");
                 return <CartItem product = {product} />;
             }
+        })}
+       </div>
 
-        })
-        
-        
-        }
-
-
+       <div>
+        <p> Subtotal: ${total}</p>
+        <button className = "cart-submit-button"> Continue shopping</button>
+        <button className = "cart-submit-button"> Checkout </button>
 
        </div>
        

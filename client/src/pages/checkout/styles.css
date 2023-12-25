@@ -32,7 +32,7 @@
     font-weight: bolder;
   }
   
-  .checkout button {
+  .cart-submit-button {
     width: 150px;
     height: 50px;
     background-color: rgb(19, 19, 19);
