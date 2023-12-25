@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import { IShopContext, ShopContext } from "../context/shop-context";
+import { useContext } from "react";
 
 
 const Navbar = () => {
+    const {availableMoney} = useContext<IShopContext>(ShopContext);
     return (
         <div className="navbar">
             <div className="navbarTitle">
@@ -20,7 +23,7 @@ const Navbar = () => {
                     <FontAwesomeIcon icon={faShoppingCart} />
                 </Link>
                 
-
+                <span>${availableMoney.toFixed(2)}</span>
 
             </div>
         </div>
