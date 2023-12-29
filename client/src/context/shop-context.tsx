@@ -94,7 +94,8 @@ export const ShopContextProvider = (props) => {
         const body = {customerID: localStorage.getItem("userID"), cartItems};
         try{
             await axios.post("http://localhost:3001/product/checkout", body,{headers,});
-            alert("purchase success")
+            fetchAvailableMoney();
+            alert("purchase success");
             navigate("/");
         }catch(err){
             console.log(err);
