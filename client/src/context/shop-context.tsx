@@ -13,6 +13,7 @@ export interface IShopContext {
     getTotalCartAmount : () => number;
     checkout: () => void;
     availableMoney: number; 
+    purchasedItems: IProduct[];
 }
 
 
@@ -24,16 +25,20 @@ const defaultVal: IShopContext = {
     getTotalCartAmount : () => 0,
     checkout: () => null,
     availableMoney: 0,
+    purchasedItems: [],
 }
 
 export const ShopContext = createContext<IShopContext>(defaultVal);
 
 export const ShopContextProvider = (props) => {
     const [cartItems , setCartItems]    = useState< {string : number} | {}> ({});
-    const { products} = useGetProducts();
-    const { headers} = useGetToken();
-    const navigate = useNavigate();
     const [availableMoney, setAvailableMoney] = useState<number>(0);
+    const [purchasedItems, setPurchasedItems] = useState<IProduct[]>([]);
+
+    const { products } = useGetProducts();
+    const { headers } = useGetToken();
+    const navigate = useNavigate();
+    
 
     const fetchAvailableMoney  = async () => {
         try{ 
@@ -44,9 +49,19 @@ export const ShopContextProvider = (props) => {
         }
     }
 
+    const fetchPurchasedItems = async () => {
+        try{ 
+            const res = await axios.get(`http://localhost:3001/product/purchased-items/${localStorage.getItem('userID')}`, {headers});
+            setPurchasedItems(res.data.purchasedItems);
+        }catch(err){
+            alert("error: couldnt fetch the items");
+        }
+    }
+
     //need to run it once
     useEffect(()=>{
         fetchAvailableMoney();
+        fetchPurchasedItems(); 
     },[]);
     
 
@@ -100,7 +115,7 @@ export const ShopContextProvider = (props) => {
             alert("purchase success");
             navigate("/");
         }catch(err){
-            alert("products not available");
+            alert("products not available/not enough money");
             console.log(err);
         }
     }
@@ -113,7 +128,8 @@ export const ShopContextProvider = (props) => {
         getCartItemCount,
         getTotalCartAmount,
         checkout,
-        availableMoney
+        availableMoney,
+        purchasedItems
     };
 
     //can access those funcionalities bf useContext

@@ -73,7 +73,7 @@ router.post("/checkout" ,verifyToken, async( req: Request , res: Response) => {
 }
 )
 
-router.get("/purchased-items/:customerID" , async (req:Request, res:Response) =>{
+router.get("/purchased-items/:customerID" ,verifyToken, async (req:Request, res:Response) =>{
     const { customerID } = req.params;
     // console.log(customerID);
     try{
@@ -83,7 +83,7 @@ router.get("/purchased-items/:customerID" , async (req:Request, res:Response) =>
         }
         //geting the product objects for the user
         const products = await ProductModel.find({_id: { $in: user.purchasedItems }});
-        console.log(products);
+        //console.log(products);
 
         res.json({ purchasedItems : products  });
     }catch(err){
