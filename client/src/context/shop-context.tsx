@@ -112,6 +112,7 @@ export const ShopContextProvider = (props) => {
 
             setCartItems({});  //clear the cart 
             fetchAvailableMoney(); //update the navbar
+            fetchPurchasedItems(); //update the purchased item list
             alert("purchase success");
             navigate("/");
         }catch(err){
