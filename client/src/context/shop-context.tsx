@@ -68,7 +68,7 @@ export const ShopContextProvider = (props) => {
 
     const removeFromCart = (itemId: string) => {
         if (!cartItems[itemId]) return;
-        if (cartItems[itemId] == 0) return;
+        if (cartItems[itemId] === 0) return;
         setCartItems((prev)=> ({ ...prev , [itemId]: prev[itemId] - 1 }));
        
     };
@@ -82,7 +82,7 @@ export const ShopContextProvider = (props) => {
         let total = 0   
         for (const item in cartItems){
             if (cartItems[item] > 0 ){
-                let itemInfo: IProduct = products.find((product) => product._id == item )
+                let itemInfo: IProduct = products.find((product) => product._id === item )
 
                 total += cartItems[item] * itemInfo.price
             }
@@ -94,10 +94,13 @@ export const ShopContextProvider = (props) => {
         const body = {customerID: localStorage.getItem("userID"), cartItems};
         try{
             await axios.post("http://localhost:3001/product/checkout", body,{headers,});
-            fetchAvailableMoney();
+
+            setCartItems({});  //clear the cart 
+            fetchAvailableMoney(); //update the navbar
             alert("purchase success");
             navigate("/");
         }catch(err){
+            alert("products not available");
             console.log(err);
         }
     }
