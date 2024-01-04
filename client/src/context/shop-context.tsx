@@ -68,9 +68,11 @@ export const ShopContextProvider = (props) => {
 
     //need to run it once when mounted
     useEffect(()=>{
-        fetchAvailableMoney();
-        console.log("shop context useeffect running")
-        fetchPurchasedItems(); 
+        if(isAuthenticated) {
+            fetchAvailableMoney();
+            console.log("shop context useeffect running")
+            fetchPurchasedItems();
+        }
     },[]);
     
 
