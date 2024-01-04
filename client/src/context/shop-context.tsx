@@ -4,6 +4,7 @@ import { useGetProducts } from "../hooks/useGetProducts";
 import axios from "axios";
 import { useGetToken } from "../hooks/useGetToken";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export interface IShopContext {
     addToCart :( itemId: string) => void ;
@@ -14,6 +15,8 @@ export interface IShopContext {
     checkout: () => void;
     availableMoney: number; 
     purchasedItems: IProduct[];
+    isAuthenticated : boolean;
+    setIsAuthenticated : (isAuthenticated: boolean) => void;
 }
 
 
@@ -26,6 +29,8 @@ const defaultVal: IShopContext = {
     checkout: () => null,
     availableMoney: 0,
     purchasedItems: [],
+    isAuthenticated: false,
+    setIsAuthenticated: () => null ,
 }
 
 export const ShopContext = createContext<IShopContext>(defaultVal);
@@ -34,11 +39,20 @@ export const ShopContextProvider = (props) => {
     const [cartItems , setCartItems]    = useState< {string : number} | {}> ({});
     const [availableMoney, setAvailableMoney] = useState<number>(0);
     const [purchasedItems, setPurchasedItems] = useState<IProduct[]>([]);
+    const [cookie,setCookie] =useCookies(["access_token"])
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(cookie.access_token !== null);
 
     const { products } = useGetProducts();
     const { headers } = useGetToken();
     const navigate = useNavigate();
     
+    // useEffect(() => {
+    //     const authenticated = localStorage.getItem('isAuthenticated');
+    //     alert("authenticated value is"+ authenticated);
+    //     if (authenticated === 'true') {
+    //         setIsAuthenticated(true);
+    //     }
+    // });
 
     const fetchAvailableMoney  = async () => {
         try{ 
@@ -60,9 +74,19 @@ export const ShopContextProvider = (props) => {
 
     //need to run it once
     useEffect(()=>{
-        fetchAvailableMoney();
-        fetchPurchasedItems(); 
-    },[]);
+        console.log("i was in he useEffect of shopcontext");
+        if (isAuthenticated) {
+            fetchAvailableMoney();
+            fetchPurchasedItems(); 
+        }
+    },[isAuthenticated]);
+
+    useEffect(()=>{
+        if(!isAuthenticated){
+            localStorage.clear();
+            setCookie("access_token",null);
+        }
+    },[isAuthenticated]);
     
 
     const getCartItemCount = (itemId: string): number => {
@@ -130,7 +154,9 @@ export const ShopContextProvider = (props) => {
         getTotalCartAmount,
         checkout,
         availableMoney,
-        purchasedItems
+        purchasedItems,
+        setIsAuthenticated,
+        isAuthenticated, 
     };
 
     //can access those funcionalities bf useContext
