@@ -36,9 +36,12 @@ export const ShopContextProvider = (props) => {
     const [purchasedItems, setPurchasedItems] = useState<IProduct[]>([]);
 
     const { products } = useGetProducts();
+    console.log("heres the getproducts in shocontext",products);
     const { headers } = useGetToken();
     const navigate = useNavigate();
-    
+
+    //seems running everytime when using any context value
+    console.log("shop context running...");
 
     const fetchAvailableMoney  = async () => {
         try{ 
@@ -58,9 +61,10 @@ export const ShopContextProvider = (props) => {
         }
     }
 
-    //need to run it once
+    //need to run it once when mounted
     useEffect(()=>{
         fetchAvailableMoney();
+        console.log("shop context useeffect running")
         fetchPurchasedItems(); 
     },[]);
     

@@ -18,8 +18,9 @@ export const useGetProducts = () => {
         }
 
     };
-
+    console.log("useGetProducts working");
     useEffect(() => {
+        console.log("use effect in  useGetProducts working");
         fetchProducts();
     }, []);
 

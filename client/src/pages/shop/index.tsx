@@ -5,7 +5,7 @@ import "./styles.css"
 
 const ShopPage = () => {
     const { products } = useGetProducts();
-    console.log(products);
+    console.log("this list from shop page (have different usegetproduct)",products);
     return (
         <div className = "shop">
             <div className="products">
