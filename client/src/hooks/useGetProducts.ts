@@ -7,7 +7,6 @@ export const useGetProducts = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
        
     const { headers } = useGetToken();
-    console.log("hi there");
 
     const fetchProducts = async () => {
         try{

@@ -3,6 +3,7 @@ import {SyntheticEvent, useState} from 'react';
 import { UserErrors } from '../../models/errors';
 import {useCookies} from 'react-cookie';
 import {useNavigate} from "react-router-dom";
+import "./styles.css";
 
 const AuthPage = () => {
     return ( <div>
