@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 const ShopPage = () => {
     const { isAuthenticated } = useContext<IShopContext>(ShopContext);
     const { products } = useGetProducts();
-    console.log(products);
+    
     
     if (!isAuthenticated){
         return <Navigate to = "/auth"/>

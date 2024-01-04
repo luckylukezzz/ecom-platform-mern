@@ -10,7 +10,7 @@ import { useCookies } from "react-cookie";
 const Navbar = () => {
     const {availableMoney} = useContext<IShopContext>(ShopContext);
     const {isAuthenticated ,setIsAuthenticated} = useContext<IShopContext>(ShopContext);
-    const [_,setCookies] = useCookies(["access_token"]);
+    // const [_,setCookies] = useCookies(["access_token"]);
     const logout = () => {
         setIsAuthenticated(false);
     };

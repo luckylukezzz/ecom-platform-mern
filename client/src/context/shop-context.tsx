@@ -46,14 +46,6 @@ export const ShopContextProvider = (props) => {
     const { headers } = useGetToken();
     const navigate = useNavigate();
     
-    // useEffect(() => {
-    //     const authenticated = localStorage.getItem('isAuthenticated');
-    //     alert("authenticated value is"+ authenticated);
-    //     if (authenticated === 'true') {
-    //         setIsAuthenticated(true);
-    //     }
-    // });
-
     const fetchAvailableMoney  = async () => {
         try{ 
             const res = await axios.get(`http://localhost:3001/user/available-money/${localStorage.getItem('userID')}`, {headers});
@@ -72,7 +64,6 @@ export const ShopContextProvider = (props) => {
         }
     }
 
-    //need to run it once
     useEffect(()=>{
         console.log("i was in he useEffect of shopcontext");
         if (isAuthenticated) {
@@ -118,15 +109,20 @@ export const ShopContextProvider = (props) => {
     };
 
     const getTotalCartAmount = () =>{
-        let total = 0   
-        for (const item in cartItems){
-            if (cartItems[item] > 0 ){
-                let itemInfo: IProduct = products.find((product) => product._id === item )
+        
+        if (products.length === 0) return 0;
 
-                total += cartItems[item] * itemInfo.price
-            }
+        let totalAmount = 0;
+        for (const item in cartItems) {
+        if (cartItems[item] > 0) {
+            let itemInfo: IProduct = products.find(
+            (product) => product._id === item
+            );
+
+            totalAmount += cartItems[item] * itemInfo.price;
         }
-        return total;
+        }
+        return Number(totalAmount.toFixed(2));
     };
 
     const checkout = async () => {

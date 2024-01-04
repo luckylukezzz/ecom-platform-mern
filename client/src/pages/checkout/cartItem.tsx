@@ -35,6 +35,4 @@ const CartItem = (props: Props) => {
  
 export default CartItem;
 
-function useContest<T>(ShopContext: any) {
-    throw new Error("Function not implemented.");
-}
+

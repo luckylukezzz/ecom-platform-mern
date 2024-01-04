@@ -13,6 +13,7 @@ const CheckoutPage = () => {
 
     const {products} = useGetProducts();
     const total = getTotalCartAmount();
+    console.log("total is ", total);
     const navigate = useNavigate();
 
 
@@ -34,14 +35,14 @@ const CheckoutPage = () => {
 
         {total > 0 ? (
                <div className="checkout">
-               <p> Subtotal: ${total.toFixed(2)}</p>
+               <p> Subtotal: ${total.toFixed(2)}</p> 
                <button className = "cart-submit-button" onClick={() => navigate("/")}> Continue shopping</button>
                <button className = "cart-submit-button" onClick={checkout}> Checkout </button>
        
               </div>
-        ) : (<h1>Shopping cart is empty</h1>)}
-    
-       
+        ) : (<h1>Shopping cart is empty</h1>)
+     
+        }
     </div> );
 }
  

@@ -6,18 +6,10 @@ import { IShopContext, ShopContext } from '../context/shop-context';
 
 export const useGetProducts = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
-    const {isAuthenticated ,setIsAuthenticated} = useContext<IShopContext>(ShopContext);
+    const {isAuthenticated } = useContext<IShopContext>(ShopContext);
        
     const { headers } = useGetToken();
-    console.log("hi there");
 
-    // useEffect(() => {
-    //     const authenticated = localStorage.getItem('isAuthenticated');
-    //     alert("authenticated value is"+ authenticated);
-    //     if (authenticated === 'true') {
-    //         setIsAuthenticated(true);
-    //     }
-    // });
     const fetchProducts = async () => {
         try{
             const fetchedProducts =await axios.get("http://localhost:3001/product" , {headers});
@@ -30,13 +22,13 @@ export const useGetProducts = () => {
     };
 
     useEffect(() => {
-       console.log("i was in useeffect of useGetProducts ")
+       console.log("i was in useeffect of useGetProducts ", isAuthenticated)
+
         if (isAuthenticated){
             fetchProducts();
-        }
-      
-        
-    }, [isAuthenticated]);  //whenever hook called and authenticated it fetches products
+        } 
+    }, [isAuthenticated]);  
 
+    console.log("products are", products );
     return { products };
     };
