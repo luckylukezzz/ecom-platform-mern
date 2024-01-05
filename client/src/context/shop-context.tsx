@@ -1,6 +1,7 @@
 import {createContext, useEffect, useState} from "react";
 import { IProduct } from "../models/interfaces";
 import { useGetProducts } from "../hooks/useGetProducts";
+import { ProductErrors } from "../models/errors";
 import axios from "axios";
 import { useGetToken } from "../hooks/useGetToken";
 import { useNavigate } from "react-router-dom";
@@ -145,8 +146,24 @@ export const ShopContextProvider = (props) => {
             alert("purchase success");
             navigate("/");
         }catch(err){
-            alert("products not available/not enough money");
-            console.log(err);
+            
+            console.log(err.response);
+            let errorMessage: string = "";
+            switch (err.response.data.type) {
+              case ProductErrors.NO_PRODUCT_FOUND:
+                errorMessage = "No product found";
+                break;
+              case ProductErrors.NO_AVAILABLE_MONEY:
+                errorMessage = "Not enough money";
+                break;
+              case ProductErrors.NOT_ENOUGH_STOCK:
+                errorMessage = "Not enough stock";
+                break;
+              default:
+                errorMessage = "Something went wrong";
+            }
+            alert("ERROR: " + errorMessage);
+
         }
     }
 
@@ -168,4 +185,5 @@ export const ShopContextProvider = (props) => {
     return (<ShopContext.Provider value = {contextValue} >
         {props.children}
     </ShopContext.Provider>
-);};
+    );
+};
