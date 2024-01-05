@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import {useGetToken} from "./useGetToken";
 import {IProduct} from "../models/interfaces";
-
+//this runs everytime when getUseProducts called except useeffect in it
 export const useGetProducts = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
        

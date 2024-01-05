@@ -4,6 +4,7 @@ import { useGetProducts } from "../hooks/useGetProducts";
 import axios from "axios";
 import { useGetToken } from "../hooks/useGetToken";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export interface IShopContext {
     addToCart :( itemId: string) => void ;
@@ -38,7 +39,8 @@ export const ShopContextProvider = (props) => {
     const [cartItems , setCartItems]    = useState< {string : number} | {}> ({});
     const [availableMoney, setAvailableMoney] = useState<number>(0);
     const [purchasedItems, setPurchasedItems] = useState<IProduct[]>([]);
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const [cookies,_]= useCookies(["access_token"]);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(cookies.access_token !== null);
     const { products } = useGetProducts();
     console.log("heres the getproducts in shopcontext",products);
 
@@ -46,7 +48,7 @@ export const ShopContextProvider = (props) => {
     const navigate = useNavigate();
 
     //seems running everytime when using any context value
-    console.log("shop context running...");
+    console.log("shop context running...",cartItems,availableMoney,isAuthenticated);
 
     const fetchAvailableMoney  = async () => {
         try{ 
@@ -68,11 +70,11 @@ export const ShopContextProvider = (props) => {
 
     //need to run it once when mounted
     useEffect(()=>{
-        if(isAuthenticated) {
+       
             fetchAvailableMoney();
             console.log("shop context useeffect running")
             fetchPurchasedItems();
-        }
+        
     },[]);
     
 
