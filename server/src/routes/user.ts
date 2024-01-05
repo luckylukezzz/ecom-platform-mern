@@ -67,7 +67,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
                 console.log("why???");
                 return res.status(403).send('Forbidden');
             }
-            console.log("hlo im ok");
+            console.log("token fine dude");
             next(); // Continue to the next middleware
         });
     } else {  //need this else because i might try to send several responses
