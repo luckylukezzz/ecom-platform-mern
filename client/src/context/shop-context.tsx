@@ -41,9 +41,9 @@ export const ShopContextProvider = (props) => {
     const [purchasedItems, setPurchasedItems] = useState<IProduct[]>([]);
     const [cookies,_]= useCookies(["access_token"]);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(cookies.access_token !== null);
-    const { products } = useGetProducts();
+    const [products,setProducts] = useState(null);
+    // const { products } = useGetProducts();
     console.log("heres the getproducts in shopcontext",products);
-
     const { headers } = useGetToken();
     const navigate = useNavigate();
 
@@ -70,12 +70,28 @@ export const ShopContextProvider = (props) => {
 
     //need to run it once when mounted
     useEffect(()=>{
-       
+        console.log("shop context useeffect running")
+        if(isAuthenticated){
             fetchAvailableMoney();
-            console.log("shop context useeffect running")
+            console.log("shop context useeffect running: is Auth true");
             fetchPurchasedItems();
+            
+            const fetchProducts = async () => {
+                try{
+                    const fetchedProducts =await axios.get("http://localhost:3001/product" , {headers});
+                    setProducts( fetchedProducts.data.products);
+                
+                }catch(err){
+                    alert("something went wrong at useGetProducts ");
+                }
         
-    },[]);
+            };
+            const p = fetchProducts();
+            setProducts(p);
+        }
+           
+        
+    },[isAuthenticated]);
     
 
     const getCartItemCount = (itemId: string): number => {
