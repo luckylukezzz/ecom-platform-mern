@@ -9,7 +9,7 @@ import { useCookies } from "react-cookie";
 
 
 const Navbar = () => {
-    const { isAuthenticated , setIsAuthenticated } = useContext<IShopContext>(ShopContext);
+    const { isAuthenticated , setIsAuthenticated ,setCartItems } = useContext<IShopContext>(ShopContext);
     const [_,setCookies] = useCookies(["access_token"]);
     
 
@@ -17,8 +17,9 @@ const Navbar = () => {
         localStorage.clear();
         setCookies("access_token", null);
         setIsAuthenticated(false);
-
+        setCartItems({});
     };
+    
     const {availableMoney} = useContext<IShopContext>(ShopContext);
     return (
         <div className="navbar">
