@@ -13,7 +13,7 @@ services:
     build: ./client
     container_name: client_c
     volumes:
-      - ./client:/frontend
+      - "./client:/frontend:delegated"
       - /frontend/node_modules/
     ports:
       - '3000:3000'
