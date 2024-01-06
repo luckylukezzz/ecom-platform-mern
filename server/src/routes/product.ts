@@ -93,5 +93,21 @@ router.get("/purchased-items/:customerID" ,verifyToken, async (req:Request, res:
 })
 
 
+router.get('/shop',verifyToken, async (req: Request, res: Response) => {
+    const perPage = 6;
+    const page: number = parseInt(req.query.page as string) || 1;
+  
+    try {
+      const products = await ProductModel.find({})
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .exec();
+  
+      res.json(products);
+    } catch (err) {
+        res.status(400).json({ err});
+    }
+  });
+
 
 export {router as productRouter};

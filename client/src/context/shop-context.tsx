@@ -18,6 +18,7 @@ export interface IShopContext {
     purchasedItems: IProduct[];
     isAuthenticated : boolean;
     setIsAuthenticated: (isAuthenticated: boolean) => void;
+    setCartItems: React.Dispatch<React.SetStateAction<{ [itemName: string]: number } | null | {}>>;
 }
 
 
@@ -32,6 +33,7 @@ const defaultVal: IShopContext = {
     purchasedItems: [],
     isAuthenticated: false,
     setIsAuthenticated: () => null,
+    setCartItems: () => null,
 }
 
 export const ShopContext = createContext<IShopContext>(defaultVal);
@@ -179,6 +181,7 @@ export const ShopContextProvider = (props) => {
         purchasedItems,
         isAuthenticated,
         setIsAuthenticated,
+        setCartItems,
     };
 
     //can access those funcionalities bf useContext
