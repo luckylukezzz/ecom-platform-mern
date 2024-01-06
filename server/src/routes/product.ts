@@ -93,8 +93,8 @@ router.get("/purchased-items/:customerID" ,verifyToken, async (req:Request, res:
 })
 
 
-router.get('/shop', async (req: Request, res: Response) => {
-    const perPage = 5;
+router.get('/shop',verifyToken, async (req: Request, res: Response) => {
+    const perPage = 6;
     const page: number = parseInt(req.query.page as string) || 1;
   
     try {
@@ -105,7 +105,7 @@ router.get('/shop', async (req: Request, res: Response) => {
   
       res.json(products);
     } catch (err) {
-      res.status(500).json({ message: err.message });
+        res.status(400).json({ err});
     }
   });
 
