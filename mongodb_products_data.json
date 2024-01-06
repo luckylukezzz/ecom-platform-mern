@@ -40,5 +40,75 @@
         "description": "Wireless headphones with noise-cancellation technology.",
         "imageURL": "https://cdn.pixabay.com/photo/2016/11/29/09/08/headphones-1868612_1280.jpg",
         "stockQuantity": 75
+    },
+    {
+        "productName": "Digital Camera",
+        "price": 399,
+        "description": "Mirrorless camera with 4K video capability.",
+        "imageURL": "https://img.freepik.com/free-photo/professional-camera-blurred_169016-10249.jpg?w=996&t=st=1704548876~exp=1704549476~hmac=b17b5bd1e6d22f58d9682ee5d6028d75adffe14fa93b4a2a98f8853ef1807ef2",
+        "stockQuantity": 25
+    },
+    {
+        "productName": "Air Fryer",
+        "price": 79,
+        "description": "Large capacity air fryer for healthy cooking.",
+        "imageURL": "https://img.freepik.com/free-photo/freshly-brewed-cappuccino-rustic-wood-table-generated-by-ai_188544-27289.jpg?w=1060&t=st=1704548918~exp=1704549518~hmac=9ac336b6d2676005737d168ff83e8292f8538a64446323527ed84bcb645c939e",
+        "stockQuantity": 40
+    },
+    {
+        "productName": "Fitness Tracker",
+        "price": 129,
+        "description": "Waterproof fitness tracker with heart rate monitor.",
+        "imageURL": "https://img.freepik.com/premium-vector/man-athlete-uses-fitness-bracelet-properties-performance-device_130740-1858.jpg?w=900",
+        "stockQuantity": 60
+    },
+    {
+        "productName": "Electric Toothbrush",
+        "price": 59,
+        "description": "Rechargeable electric toothbrush with multiple modes.",
+        "imageURL": "https://img.freepik.com/free-vector/realistic-dental-care-brush_23-2149004605.jpg?w=740&t=st=1704549075~exp=1704549675~hmac=f8945280e2b7390bb6563e52e29a9e1bba0ace80fdb2e09d5bae4bbcf990b08a",
+        "stockQuantity": 55
+    },
+    {
+        "productName": "Gaming Console",
+        "price": 499,
+        "description": "Next-gen gaming console with high-performance graphics.",
+        "imageURL": "https://img.freepik.com/free-psd/3d-illustration-children-s-toy-gaming-controller_23-2149345301.jpg?w=740&t=st=1704549101~exp=1704549701~hmac=acbe031a76987ddd6e3199413d82f19486390b6a853267c13fbe3de18f7d009d",
+        "stockQuantity": 30
+    },
+    {
+        "productName": "Smart Watch",
+        "price": 249,
+        "description": "Smartwatch with GPS and fitness tracking features.",
+        "imageURL": "https://img.freepik.com/free-vector/realistic-fitness-trackers_23-2148530529.jpg?w=740&t=st=1704549119~exp=1704549719~hmac=cbe17682b2658b2ada70f5e0b98db808f4da600de396b867cdfc5875c4029abf",
+        "stockQuantity": 70
+    },
+    {
+        "productName": "Robot Vacuum Cleaner",
+        "price": 299,
+        "description": "Intelligent robot vacuum with mapping technology.",
+        "imageURL": "https://img.freepik.com/free-photo/robot-vacuum-doing-its-work-house_23-2149036868.jpg?w=900&t=st=1704549136~exp=1704549736~hmac=28693d997e74c7c0b7091467b78c00eaa243a623d9c8a9c292432210f45a607a",
+        "stockQuantity": 35
+    },
+    {
+        "productName": "Bluetooth Speaker",
+        "price": 89,
+        "description": "Portable Bluetooth speaker with 360-degree sound.",
+        "imageURL": "https://img.freepik.com/free-psd/speaker-mockup-cylinder-shape_1310-945.jpg?w=900&t=st=1704549165~exp=1704549765~hmac=d1864e2d0be550c1ff106c9d566a3a463d4778005323ba64cd766ed1d6c52a5f",
+        "stockQuantity": 45
+    },
+    {
+        "productName": "Wireless Router",
+        "price": 129,
+        "description": "High-speed wireless router for home or office use.",
+        "imageURL": "https://img.freepik.com/free-photo/high-angle-wi-fi-router-with-vacuum-cleaner_23-2148779238.jpg?w=900&t=st=1704549185~exp=1704549785~hmac=9be110ed52128c737de04f164f0ca61953cdebb3f38b9b835cbd48de8e660260",
+        "stockQuantity": 50
+    },
+    {
+        "productName": "Electric Scooter",
+        "price": 399,
+        "description": "Foldable electric scooter for commuting.",
+        "imageURL": "https://img.freepik.com/free-vector/realistic-electric-scooter-collection_23-2147687272.jpg?w=740&t=st=1704549204~exp=1704549804~hmac=9a8f325bb5427fe10fe2a16865b04d3842bf130a1835f90cf719fce4588ab5d0",
+        "stockQuantity": 20
     }
 ]
