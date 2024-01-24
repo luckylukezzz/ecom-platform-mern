@@ -81,3 +81,48 @@ body {
     border-color: transparent;
   }
   
+/* Add these styles to your existing CSS file */
+
+.pagination-buttons {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  margin-top: 20px;
+  margin-right: 20px; /* Add more space to the right */
+}
+
+.pagination-buttons button {
+  background-color: transparent;
+  border: 2px solid rgb(19, 19, 19);
+  min-width: 120px; /* Increase button width */
+  padding: 10px 15px; /* Increase button padding */
+  border-radius: 15px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  cursor: pointer;
+  margin-left: 15px; /* Adjust spacing between buttons */
+}
+
+.pagination-buttons button:hover {
+  background-color: rgb(19, 19, 19);
+  color: white;
+  border-color: transparent;
+}
+
+/* Styling for "No more items" message */
+.no-more-items {
+  text-align: center;
+  font-style: italic;
+  color: #888; /* Adjust the color as needed */
+  font-weight: bold; /* Make "No more items" bold */
+  font-size: 5rem; /* Increase font size */
+  margin-top: 30px; /* Increase top margin */
+}
+@media screen and (max-width: 767px) {
+  .pagination-buttons {
+    justify-content: center; /* Align buttons to the center for smaller screens */
+    margin: 20px 0; /* Adjust margin for spacing */
+  }
+
+  .pagination-buttons button {
+    margin-left: 10px;
+  }
+}

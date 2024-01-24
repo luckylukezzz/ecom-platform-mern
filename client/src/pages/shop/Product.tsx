@@ -25,12 +25,15 @@ const  Product= ( props: Props) => {
         <div className = "description">
             <h3>{productName}</h3>
             <p>{description}</p>
-            <p>${price}</p>
-
+            <p><b>${price}</b></p>
+            {stockQuantity !== 0 && <p>available stock: {stockQuantity}</p> }
         </div>
-        <button className = "addToCartBttn" onClick={()=> addToCart(_id)} >
-            Add to Cart {count > 0 && <> ({count})</>}
-        </button>
+        {stockQuantity !== 0 && (<>
+            <button className = "addToCartBttn" onClick={()=> addToCart(_id)} >
+                Add to Cart {count > 0 && <> ({count})</>}
+            </button>
+        </>)}
+       
         <div className="stock-quantity">
             {stockQuantity === 0 && <h1> OUT OF STOCK</h1> }
 
